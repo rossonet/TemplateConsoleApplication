@@ -1,4 +1,4 @@
-name: Test on master branch
+name: Test on master branch with Maven
 
 on:
   push:
@@ -26,5 +26,5 @@ jobs:
         git submodule update
     - name: Print env
       run: echo $GITHUB_ACTOR
-    - name: Build and test with gradle
-      run: ./gradlew test -Dorg.gradle.daemon=false
+    - name: Build and test with Maven
+      run: ./mvnw test
