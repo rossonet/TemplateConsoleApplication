@@ -105,6 +105,10 @@ docker build --rm -t ar4k-agent:latest .
 docker run -ti --rm ar4k-agent:latest
 ```
 
+### live reload Vaadin component
+
+Starting the application with bootRun and use compileJava to refresh with the new code 
+
 
 ![alt text](https://www.rossonet.net/wp-content/uploads/2015/01/logoRossonet4.png "Rossonet")
 
