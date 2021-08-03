@@ -93,7 +93,7 @@ dependencies {
 	//compile "net.rossonet:ar4k-vaadin:${project.ext.ar4kVersion}"
 	//compile "net.rossonet:ar4k-industrial:${project.ext.ar4kVersion}"
 	// start for live reload
-	implementation group: 'org.springframework.boot', name: 'spring-boot-devtools'
+	//implementation group: 'org.springframework.boot', name: 'spring-boot-devtools'
 	// end for live reload
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.7.1'
