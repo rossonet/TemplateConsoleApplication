@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.UUID;
 
 import org.ar4k.agent.config.AbstractServiceConfig;
-import org.joda.time.Instant;
 
 import com.beust.jcommander.Parameter;
 
@@ -29,75 +28,54 @@ import com.beust.jcommander.Parameter;
  */
 public abstract class AbstractSocketFactoryConfig extends AbstractServiceConfig {
 
-  private static final long serialVersionUID = 2256280745924059640L;
+	private static final long serialVersionUID = 2256280745924059640L;
+	private String uniqueId = UUID.randomUUID().toString();
 
-  private Instant creationDate = new Instant();
-  private Instant lastUpdate = new Instant();
-  private String uniqueId = UUID.randomUUID().toString();
+	@Parameter(names = "--name", description = "tunnel name", required = true)
+	public String name;
 
-  @Parameter(names = "--name", description = "tunnel name", required = true)
-  public String name;
+	@Parameter(names = "--description", description = "tunnel description", required = false)
+	public String description;
 
-  @Parameter(names = "--description", description = "tunnel description", required = false)
-  public String description;
+	@Parameter(names = "--tags", description = "tunnel tags (multi selection)", variableArity = true, required = false)
+	public List<String> tags;
 
-  @Parameter(names = "--tags", description = "tunnel tags (multi selection)", variableArity = true, required = false)
-  public List<String> tags;
+	@Parameter(names = "--priority", description = "priority for the tunnel low values are before, high values are after", required = true)
+	public int priority = 0;
 
-  @Parameter(names = "--priority", description = "priority for the tunnel low values are before, high values are after", required = true)
-  public int priority = 0;
+	@Parameter(names = "--note", description = "note related to this tunnel", required = false)
+	public String note = null;
 
-  @Parameter(names = "--note", description = "note related to this tunnel", required = false)
-  public String note = null;
+	@Override
+	public String getUniqueId() {
+		return uniqueId;
+	}
 
-  @Override
-  public Instant getCreationDate() {
-    return creationDate;
-  }
+	public void setUniqueId(String uniqueId) {
+		this.uniqueId = uniqueId;
+	}
 
-  public void setCreationDate(Instant creationDate) {
-    this.creationDate = creationDate;
-  }
+	@Override
+	public String getName() {
+		return name;
+	}
 
-  @Override
-  public Instant getLastUpdateDate() {
-    return lastUpdate;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setLastUpdate(Instant lastUpdate) {
-    this.lastUpdate = lastUpdate;
-  }
+	@Override
+	public int getPriority() {
+		return priority;
+	}
 
-  @Override
-  public String getUniqueId() {
-    return uniqueId;
-  }
+	@Override
+	public String getDescription() {
+		return description;
+	}
 
-  public void setUniqueId(String uniqueId) {
-    this.uniqueId = uniqueId;
-  }
-
-  @Override
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  @Override
-  public int getPriority() {
-    return priority;
-  }
-
-  @Override
-  public String getDescription() {
-    return description;
-  }
-
-  @Override
-  public List<String> getTags() {
-    return tags;
-  }
+	@Override
+	public List<String> getTags() {
+		return tags;
+	}
 }

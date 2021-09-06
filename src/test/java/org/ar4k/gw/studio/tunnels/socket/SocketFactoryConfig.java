@@ -14,6 +14,8 @@
     */
 package org.ar4k.gw.studio.tunnels.socket;
 
+import org.ar4k.agent.core.interfaces.EdgeComponent;
+
 import com.beust.jcommander.Parameter;
 
 /*
@@ -24,34 +26,34 @@ import com.beust.jcommander.Parameter;
  */
 public class SocketFactoryConfig extends AbstractSocketFactoryConfig {
 
-  private static final long serialVersionUID = -7113857848013750537L;
+	private static final long serialVersionUID = -7113857848013750537L;
 
-  @Parameter(names = "--soTimeout", description = "enable/disable SO_TIMEOUT with the specified timeout, in milliseconds")
-  public Integer soTimeout = null;
-  @Parameter(names = "--tcpNoDelay", description = "enable/disable TCP_NODELAY (disable/enable Nagle's algorithm)")
-  public Boolean tcpNoDelay = null;
-  @Parameter(names = "--keepAlive", description = "enable/disable SO_KEEPALIVE")
-  public Boolean keepAlive = null;
-  @Parameter(names = "--receiveBufferSize", description = "sets the SO_RCVBUF option to the specified value for this Socket")
-  public Integer receiveBufferSize = null;
-  @Parameter(names = "--reuseAddress", description = "enable/disable the SO_REUSEADDR socket option")
-  public Boolean reuseAddress = null;
+	@Parameter(names = "--soTimeout", description = "enable/disable SO_TIMEOUT with the specified timeout, in milliseconds")
+	public Integer soTimeout = null;
+	@Parameter(names = "--tcpNoDelay", description = "enable/disable TCP_NODELAY (disable/enable Nagle's algorithm)")
+	public Boolean tcpNoDelay = null;
+	@Parameter(names = "--keepAlive", description = "enable/disable SO_KEEPALIVE")
+	public Boolean keepAlive = null;
+	@Parameter(names = "--receiveBufferSize", description = "sets the SO_RCVBUF option to the specified value for this Socket")
+	public Integer receiveBufferSize = null;
+	@Parameter(names = "--reuseAddress", description = "enable/disable the SO_REUSEADDR socket option")
+	public Boolean reuseAddress = null;
 
-  public SocketFactoryComponent instantiate() {
-    SocketFactoryComponent ss = new SocketFactoryComponent();
-    ss.setConfiguration(this);
-    return ss;
-  }
+	public EdgeComponent instantiate() {
+		SocketFactoryComponent ss = new SocketFactoryComponent();
+		ss.setConfiguration(this);
+		return ss;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("soTimeout: " + soTimeout + "\n");
-    sb.append("tcpNoDelay: " + tcpNoDelay + "\n");
-    sb.append("keepAlive: " + keepAlive + "\n");
-    sb.append("receiveBufferSize: " + receiveBufferSize + "\n");
-    sb.append("reuseAddress: " + reuseAddress + "\n");
-    return sb.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("soTimeout: " + soTimeout + "\n");
+		sb.append("tcpNoDelay: " + tcpNoDelay + "\n");
+		sb.append("keepAlive: " + keepAlive + "\n");
+		sb.append("receiveBufferSize: " + receiveBufferSize + "\n");
+		sb.append("reuseAddress: " + reuseAddress + "\n");
+		return sb.toString();
+	}
 
 }
