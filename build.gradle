@@ -96,7 +96,7 @@ dependencies {
 	//implementation group: 'org.springframework.boot', name: 'spring-boot-devtools'
 	// end for live reload
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.7.1'
+	testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.8.0'
 }
 
 task eclipseClosedDependencies {}
