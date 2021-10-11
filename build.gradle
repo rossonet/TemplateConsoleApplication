@@ -32,7 +32,7 @@ ext {
 	sourceCompatibility = 1.8
 	springStatemachineVersion = '2.2.0.RELEASE'
 	springBootVersion = '2.4.2.RELEASE'
-	ar4kVersion = '0.9.1009'
+	ar4kVersion = '0.9.1014'
 	debianName = 'ar4k-agent'
 }
 
