@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>net.rossonet</groupId>
 			<artifactId>ar4k-core</artifactId>
-			<version>0.9.1003</version>
+			<version>0.9.1014</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.codehaus.groovy</groupId>
@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>net.rossonet</groupId>
 			<artifactId>ar4k-terminal</artifactId>
-			<version>0.9.1003</version>
+			<version>0.9.1014</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.codehaus.groovy</groupId>
