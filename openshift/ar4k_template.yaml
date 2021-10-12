@@ -138,6 +138,8 @@ objects:
         - env:
           - name: SPRING_SHELL_INTERACTIVE_ENABLED
             value: "false"
+          - name: SERVER_PORT
+            value: 9005
           - name: AR4K_CONSOLEONLY
             value: "false"
           - name: AR4K_CONFPATH
