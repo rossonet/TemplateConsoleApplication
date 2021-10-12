@@ -105,7 +105,14 @@ docker build --rm -t ar4k-agent:latest .
 docker run -ti --rm ar4k-agent:latest
 ```
 
-### live reload Vaadin component
+### Install template in OpenShift or OKD
+
+```
+$ oc create -f openshift/ar4k_template.yaml 
+template.template.openshift.io/edge-agent-ar4k created
+```
+
+### Live reload Vaadin component
 
 Starting the application with bootRun and use compileJava to refresh with the new code 
 
