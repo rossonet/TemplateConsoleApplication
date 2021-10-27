@@ -117,7 +117,7 @@ template.template.openshift.io/edge-agent-ar4k created
 Starting the application with bootRun and use compileJava to refresh with the new code 
 
 
-![alt text](https://www.rossonet.net/wp-content/uploads/2015/01/logoRossonet4.png "Rossonet")
+![alt text](https://app.rossonet.net/wp-content/uploads/2021/10/rossonet-logo_280_115.png "Rossonet")
 
 [https://www.rossonet.net](https://www.rossonet.net)
 
