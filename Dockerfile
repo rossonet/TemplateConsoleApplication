@@ -1,12 +1,13 @@
-FROM openjdk:8-jdk as ar4k-builder
-RUN apt-get update -y && apt-get install curl gnupg bash sed grep coreutils wget -y
+FROM rockylinux:latest as ar4k-builder
+RUN yum install -y java-1.8.0-openjdk-devel
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0
 COPY . /ar4kAgent
 WORKDIR /ar4kAgent
 RUN chmod +x gradlew
-RUN ./gradlew clean bootJar -Dorg.gradle.jvmargs="-Xms512M -Xmx4G" --info
+RUN ./gradlew clean shadowJar -Dorg.gradle.jvmargs="-Xms512M -Xmx4G" --info
 
-FROM openjdk:8-jdk-alpine
-RUN apk add --no-cache bash gawk sed grep bc coreutils wget binutils
-COPY --from=ar4k-builder /ar4kAgent/build/libs/*.jar /ar4kAgent.jar
+FROM rockylinux:latest
+RUN yum install -y java-1.8.0-openjdk wget && yum update -y && yum clean all
+COPY --from=ar4k-builder /ar4kAgent/build/libs/*-all.jar /agent.jar
 ENTRYPOINT ["java"]
-CMD ["-XX:+UnlockExperimentalVMOptions","-Djava.net.preferIPv4Stack=true","-XX:+UseCGroupMemoryLimitForHeap","-XshowSettings:vm","-Djava.security.egd=file:/dev/./urandom","-jar","/ar4kAgent.jar"]
+CMD ["-XX:+UnlockExperimentalVMOptions","-Djava.net.preferIPv4Stack=true","-XX:+UseCGroupMemoryLimitForHeap","-XshowSettings:vm","-Djava.security.egd=file:/dev/./urandom","-jar","/agent.jar"]
