@@ -96,7 +96,9 @@ public class AppManagerImplementation implements AppManager {
 		final File configurationDirectory = new File(replaceHomeDirectory(configDirectoryPath));
 		if (configurationDirectory.exists() && configurationDirectory.isDirectory()) {
 			for (final File fileInside : configurationDirectory.listFiles()) {
-				configChanged = elaborateSingleConfigFile(configChanged, configFounds, fileInside);
+				if (elaborateSingleConfigFile(configFounds, fileInside)) {
+					configChanged = true;
+				}
 			}
 			final Set<String> toDelete = new HashSet<>();
 			for (final String i : configJsons.keySet()) {
@@ -124,8 +126,8 @@ public class AppManagerImplementation implements AppManager {
 		statusValues.clear();
 	}
 
-	private boolean elaborateSingleConfigFile(boolean configChanged, final Set<String> configFounds,
-			final File fileInside) {
+	private boolean elaborateSingleConfigFile(final Set<String> configFounds, final File fileInside) {
+		boolean configChanged = false;
 		if (!fileInside.isDirectory() && fileInside.toString().endsWith(configExtension)) {
 			final String key = fileInside.getAbsolutePath().toString();
 			String shaChecksum = "null-hash";

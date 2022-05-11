@@ -153,7 +153,6 @@ public class ConsoleTest {
 			@Override
 			public void run() {
 				Ar4kAgent.getAppManager().setConfigDirectoryPath(confDirectory);
-				;
 			}
 		};
 
