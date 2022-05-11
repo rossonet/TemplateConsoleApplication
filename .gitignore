@@ -22,6 +22,8 @@ target/
 webpack.config.js
 webpack.generated.js
 frontend
+temp-test-*
+status.json
 
 ### OUTPUT ###
 spring-shell.log

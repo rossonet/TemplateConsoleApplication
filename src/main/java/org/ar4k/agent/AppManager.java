@@ -1,10 +1,11 @@
 package org.ar4k.agent;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.json.JSONObject;
 
-public interface AppManager {
+public interface AppManager extends AutoCloseable {
 
 	public static final String KO_STATUS = "ko";
 	public static final String OK_STATUS = "ok";
@@ -22,6 +23,8 @@ public interface AppManager {
 
 	String getConfigExtensionEnviroment();
 
+	Map<String, JSONObject> getConfigJsons();
+
 	Collection<JSONObject> getConfigs();
 
 	JSONObject getJsonStatus();
@@ -29,6 +32,8 @@ public interface AppManager {
 	String getStatusFilePath();
 
 	String getStatusFilePathEnviroment();
+
+	void registerStatusValue(String label, String value);
 
 	void setCacheDirectoryPath(String cacheDirectoryPath);
 

@@ -18,21 +18,19 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.json.JSONObject;
-
 /**
  * Classe main per avvio Agente Ar4k
  *
  * @author Andrea Ambrosini
  */
 public class Ar4kAgent {
-	private static final AppManager appManager = new AppManagerImplementation();
+	private static AppManager appManager = null;
 	private static int identLevelStatusFile = 2;
 	static boolean running = true;
 
 	public static final long WHILE_DELAY = 60 * 1000L;
 
-	public static AppManager getAppmanager() {
+	public static AppManager getAppManager() {
 		return appManager;
 	}
 
@@ -48,20 +46,32 @@ public class Ar4kAgent {
 		runApp();
 	}
 
+	private static void reset() throws Exception {
+		if (appManager != null) {
+			appManager.close();
+			appManager = null;
+		}
+	}
+
 	public static void runApp() {
+		appManager = new AppManagerImplementation();
 		System.out.println("agent started");
 		System.out.println(appManager.toString());
 		while (running) {
 			try {
-				final JSONObject status = appManager.getJsonStatus();
-				final String statusFilePath = appManager.getStatusFilePath();
-				writeStringToFile(status.toString(identLevelStatusFile), statusFilePath);
+				writeStringToFile(appManager.getJsonStatus().toString(identLevelStatusFile),
+						appManager.getStatusFilePath());
 				Thread.sleep(WHILE_DELAY);
 			} catch (final Exception e) {
 				System.out.println("agent stopped");
 				e.printStackTrace();
-				System.exit(0);
+				System.exit(100);
 			}
+		}
+		try {
+			reset();
+		} catch (final Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -73,7 +83,7 @@ public class Ar4kAgent {
 		Ar4kAgent.running = false;
 	}
 
-	public static void writeStringToFile(final String text, final String fileName) throws IOException {
+	public static final void writeStringToFile(final String text, final String fileName) throws IOException {
 		final BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 		writer.write(text);
 		writer.close();
