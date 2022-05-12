@@ -82,6 +82,8 @@ jar.doLast { task ->
 }
 
 task buildDocker() {
+  group "Ar4k Build"
+  description 'Build Docker image'
   buildDocker.dependsOn("shadowJar")
   buildDocker.finalizedBy("docker")
 }

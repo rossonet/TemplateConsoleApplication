@@ -1,6 +1,6 @@
 package org.ar4k.service;
 
-public interface ManagedServices {
+public interface ManagedService {
 
 	void reloadConfiguration();
 

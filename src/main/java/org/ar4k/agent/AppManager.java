@@ -3,6 +3,7 @@ package org.ar4k.agent;
 import java.util.Collection;
 import java.util.Map;
 
+import org.ar4k.service.ManagedService;
 import org.json.JSONObject;
 
 public interface AppManager extends AutoCloseable {
@@ -33,7 +34,11 @@ public interface AppManager extends AutoCloseable {
 
 	String getStatusFilePathEnviroment();
 
+	void registerService(ManagedService service);
+
 	void registerStatusValue(String label, String value);
+
+	void removeService(ManagedService service);
 
 	void setCacheDirectoryPath(String cacheDirectoryPath);
 
