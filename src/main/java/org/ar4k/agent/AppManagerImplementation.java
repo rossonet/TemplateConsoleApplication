@@ -168,6 +168,11 @@ public class AppManagerImplementation implements AppManager {
 	}
 
 	@Override
+	public String getConfigDirectoryPathEnviroment() {
+		return configDirectoryPathEnviroment;
+	}
+
+	@Override
 	public String getConfigExtension() {
 		return configExtension;
 	}
