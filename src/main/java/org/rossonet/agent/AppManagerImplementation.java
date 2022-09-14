@@ -1,4 +1,4 @@
-package org.ar4k.agent;
+package org.rossonet.agent;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,8 +20,8 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.ar4k.service.ManagedService;
 import org.json.JSONObject;
+import org.rossonet.service.ManagedService;
 
 public class AppManagerImplementation implements AppManager {
 
@@ -88,7 +88,7 @@ public class AppManagerImplementation implements AppManager {
 			logger.severe("error in creation of MessageDigest " + e.getMessage());
 		}
 		checkConfigs();
-		checkConfigTimer.schedule(task, Ar4kAgent.WHILE_DELAY, Ar4kAgent.WHILE_DELAY);
+		checkConfigTimer.schedule(task, MainAgent.WHILE_DELAY, MainAgent.WHILE_DELAY);
 	}
 
 	private void checkConfigs() {

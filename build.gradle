@@ -13,13 +13,12 @@ buildscript {
   }
 }
 
-description = "Template progetto per libreria EdgeAgentAr4k"
-group = 'org.ar4k.agent.template'
-version = '0.0.5'
+description = "agent template project"
+group = 'org.rossonet.agent'
+version = '0.0.1'
 
 ext {
 	sourceCompatibility = 1.8
-	ar4kVersion = '0.9.1014'
 	debianName = "${project.name}"
 	packageName = "${project.name}"
 	ossrhPassword = System.getenv('OSSRH_PASSWORD')
@@ -57,13 +56,13 @@ task eclipseClosedDependencies_ {}
 
 eclipse {
 	classpath {
-	downloadJavadoc = true
-	downloadSources = true
+	    downloadJavadoc = true
+	    downloadSources = true
 	}
 }
 
 docker {
-  name "ar4k/agent-template:latest"
+  name "rossonet/${project.name}:latest"
   dockerfile file('Dockerfile.gradle')
   files "$buildDir/libs/${project.name}-${version}-all.jar"
 }
@@ -72,7 +71,7 @@ task view { doLast { println "Working on project ${project.name} [ ${project.des
 
 jar {
   manifest {
-    attributes 'Main-Class': 'org.ar4k.agent.Ar4kAgent'
+    attributes 'Main-Class': 'org.rossonet.agent.MainAgent'
   }
   enabled = true
 }
@@ -82,7 +81,7 @@ jar.doLast { task ->
 }
 
 task buildDocker() {
-  group "Ar4k Build"
+  group "Docker Container Build"
   description 'Build Docker image'
   buildDocker.dependsOn("shadowJar")
   buildDocker.finalizedBy("docker")
@@ -99,8 +98,7 @@ java {
 
 gitProperties {
 	failOnNoGitDirectory = false
-	customProperty 'ar4kComponent', "${project.name}"
-	customProperty 'ar4kVersion', "${version}"
+	customProperty 'component', "${project.name}"
 	dateFormat = "yyyy-MM-dd HH:mm:ssZ"
 	dateFormatTimeZone = 'GMT'
 }
@@ -157,15 +155,6 @@ task theiaIdeLocalBrowser(type: Exec) {
   	    description 'Open browser to local Theia IDE'
         workingDir "./"
         commandLine 'xdg-open', 'http://localhost:3000'
-}
-
-task cleanGradleCache {
-	group "Cache Workaround"
-	description 'Remove Rossonet artifacts from local Gradle cache'
-	delete "~/.gradle/caches/*/*/net.rossonet"
-	delete "~/.gradle/caches/*/*/descriptors/net.rossonet"
-	delete "~/.gradle/caches/*/*/ar4k-agent"
-	delete "~/.gradle/caches/*/*/descriptors/ar4k-agent"
 }
 
 publishing {

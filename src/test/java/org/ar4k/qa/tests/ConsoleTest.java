@@ -20,10 +20,10 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import org.ar4k.agent.Ar4kAgent;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.rossonet.agent.MainAgent;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -103,7 +103,7 @@ public class ConsoleTest {
 		stopAfterSeconds(65);
 		setVariableAfterSeconds(5, tempDirectory);
 		printConfigAfterSeconds(20);
-		Ar4kAgent.runApp();
+		MainAgent.runApp();
 		assertEquals(TEST1_VALUE, checkData1.getString(DATA1));
 		assertEquals(TEST2_VALUE, checkData2.getString(DATA2));
 		assertEquals(REPLACED_VALUE, checkData1.getString(REPLACED_DATA1));
@@ -127,8 +127,8 @@ public class ConsoleTest {
 
 			@Override
 			public void run() {
-				System.out.println("config files " + Ar4kAgent.getAppManager().getConfigs().size());
-				for (final Entry<String, JSONObject> conf : Ar4kAgent.getAppManager().getConfigJsons().entrySet()) {
+				System.out.println("config files " + MainAgent.getAppManager().getConfigs().size());
+				for (final Entry<String, JSONObject> conf : MainAgent.getAppManager().getConfigJsons().entrySet()) {
 					if (conf.getKey().endsWith("config2.test.json")) {
 						checkData2 = conf.getValue();
 					}
@@ -137,9 +137,9 @@ public class ConsoleTest {
 					}
 					System.out.println("file " + conf.getKey() + ":\n" + conf.getValue().toString(2));
 				}
-				statusFilePath = Ar4kAgent.getAppManager().getStatusFilePath();
+				statusFilePath = MainAgent.getAppManager().getStatusFilePath();
 				checkDate = new Date().toString();
-				Ar4kAgent.getAppManager().registerStatusValue("last-update", checkDate);
+				MainAgent.getAppManager().registerStatusValue("last-update", checkDate);
 			}
 		};
 
@@ -152,7 +152,7 @@ public class ConsoleTest {
 		final Runnable task = new Runnable() {
 			@Override
 			public void run() {
-				Ar4kAgent.getAppManager().setConfigDirectoryPath(confDirectory);
+				MainAgent.getAppManager().setConfigDirectoryPath(confDirectory);
 			}
 		};
 
@@ -164,7 +164,7 @@ public class ConsoleTest {
 		final Runnable task = new Runnable() {
 			@Override
 			public void run() {
-				Ar4kAgent.stopAgent();
+				MainAgent.stopAgent();
 			}
 		};
 

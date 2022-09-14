@@ -12,7 +12,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     */
-package org.ar4k.agent;
+package org.rossonet.agent;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -23,7 +23,7 @@ import java.io.IOException;
  *
  * @author Andrea Ambrosini
  */
-public class Ar4kAgent {
+public class MainAgent {
 	private static AppManager appManager = null;
 	private static int identLevelStatusFile = 2;
 	static boolean running = true;
@@ -76,11 +76,11 @@ public class Ar4kAgent {
 	}
 
 	public static void setIdentLevelStatusFile(final int identLevelStatusFile) {
-		Ar4kAgent.identLevelStatusFile = identLevelStatusFile;
+		MainAgent.identLevelStatusFile = identLevelStatusFile;
 	}
 
 	public static void stopAgent() {
-		Ar4kAgent.running = false;
+		MainAgent.running = false;
 	}
 
 	public static final void writeStringToFile(final String text, final String fileName) throws IOException {

@@ -1,10 +1,10 @@
-package org.ar4k.agent;
+package org.rossonet.agent;
 
 import java.util.Collection;
 import java.util.Map;
 
-import org.ar4k.service.ManagedService;
 import org.json.JSONObject;
+import org.rossonet.service.ManagedService;
 
 public interface AppManager extends AutoCloseable {
 

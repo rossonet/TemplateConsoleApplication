@@ -1,4 +1,4 @@
-package org.ar4k.service;
+package org.rossonet.service;
 
 public interface ManagedService {
 
