@@ -13,6 +13,10 @@ buildscript {
   }
 }
 
+ plugins {
+    id 'org.graalvm.buildtools.native' version '0.9.14'
+ }
+
 description = "agent template project"
 group = 'org.rossonet.agent'
 version = '0.0.1'
@@ -42,6 +46,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'distribution'
 apply plugin: 'signing'
 apply plugin: 'maven-publish'
+apply plugin: 'application'
 
 dependencies {
   api group: 'org.json', name: 'json', version: '20211205'
@@ -171,8 +176,8 @@ publishing {
         }
       }
       pom {
-        name = 'Ar4k Template Agent'
-        description = 'Ar4k Template Agent by Rossonet.'
+        name = "${project.name}"
+        description = "${project.description}"
         url = 'https://app.rossonet.net/'
         licenses {
           license {
@@ -209,4 +214,18 @@ publishing {
 
 signing {
     sign publishing.publications.mavenJava
+}
+
+application {
+    mainClass = 'org.rossonet.agent.MainAgent'
+}
+
+graalvmNative {
+    toolchainDetection = false
+    binaries {
+        main {
+            verbose = true
+            sharedLibrary = false
+        }
+    }
 }
