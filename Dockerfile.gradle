@@ -1,5 +1,6 @@
-FROM rockylinux:latest
-RUN yum install -y java-1.8.0-openjdk wget && yum update -y && yum clean all
-COPY *-all.jar agent.jar
+FROM eclipse-temurin:17-jdk-jammy
 ENTRYPOINT ["java"]
-CMD ["-XX:+UnlockExperimentalVMOptions","-Djava.net.preferIPv4Stack=true","-XX:+UseCGroupMemoryLimitForHeap","-XshowSettings:vm","-Djava.security.egd=file:/dev/./urandom","-jar","/agent.jar"]
+CMD ["-cp","/app/lib/*","-XX:+UnlockExperimentalVMOptions","-Djava.net.preferIPv4Stack=true","-XshowSettings:vm","-Djava.security.egd=file:/dev/./urandom", "net.rossonet.agent.MainAgent"]
+RUN mkdir -p /app
+COPY ./*.tar /tmp/
+RUN tar -xf /tmp/*.tar -C ./app --strip-components=1 && rm -rf /tmp/*.tar
