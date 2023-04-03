@@ -1,4 +1,4 @@
-name: Build fat jar, native and docker on master branch with Gradle
+name: Build fat jar and docker on master branch with Gradle
 
 on:
   push:
@@ -26,5 +26,5 @@ jobs:
         git submodule update
     - name: Print env
       run: echo $GITHUB_ACTOR
-    - name: Build shadowJar and native binary with Gradle
-      run: ./gradlew generateManpageAsciiDoc shadowJar nativeCompile docker -Dorg.gradle.daemon=false
+    - name: Build shadowJar and docker with Gradle
+      run: ./gradlew shadowJar docker -Dorg.gradle.daemon=false
