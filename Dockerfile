@@ -1,13 +1,11 @@
-FROM rockylinux:latest as ar4k-builder
-RUN yum install -y java-1.8.0-openjdk-devel
-ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0
-COPY . /ar4kAgent
-WORKDIR /ar4kAgent
-RUN chmod +x gradlew
-RUN ./gradlew clean shadowJar -Dorg.gradle.jvmargs="-Xms512M -Xmx4G" --info
+FROM ubuntu:20.04 as builder
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y openjdk-11-jdk
+COPY . /workspace
+RUN cd /workspace && echo "build project" && ./gradlew clean distTar
 
-FROM rockylinux:latest
-RUN yum install -y java-1.8.0-openjdk wget && yum update -y && yum clean all
-COPY --from=ar4k-builder /ar4kAgent/build/libs/*-all.jar /agent.jar
+FROM eclipse-temurin:17-jdk-jammy
 ENTRYPOINT ["java"]
-CMD ["-XX:+UnlockExperimentalVMOptions","-Djava.net.preferIPv4Stack=true","-XX:+UseCGroupMemoryLimitForHeap","-XshowSettings:vm","-Djava.security.egd=file:/dev/./urandom","-jar","/agent.jar"]
+CMD ["-cp","/app/lib/*","-XX:+UnlockExperimentalVMOptions","-Djava.net.preferIPv4Stack=true","-XshowSettings:vm","-Djava.security.egd=file:/dev/./urandom", "net.rossonet.agent.MainAgent"]
+RUN mkdir -p /app
+COPY --from=builder /workspace/build/distributions/*.tar /tmp/
+RUN tar -xf /tmp/*.tar -C ./app --strip-components=1 && rm -rf /tmp/*.tar
