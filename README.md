@@ -1,8 +1,11 @@
+## GitHub Actions
+
 [![Test on master branch with Gradle](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/test-on-master-with-gradle.yml/badge.svg?branch=master)](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/test-on-master-with-gradle.yml)
 [![Build fat jar, native and docker on master branch with Gradle](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/build-on-master-with-gradle.yml/badge.svg?branch=master)](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/build-on-master-with-gradle.yml)
 [![Publish on Maven Central](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/publish-on-maven.yml/badge.svg?branch=master)](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/publish-on-maven.yml)
 [![Build and publish docker image to DockerHub](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/publish-to-dockerhub.yml/badge.svg?branch=master)](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/publish-to-dockerhub.yml)
 [![Build and publish docker image to GitHub Registry](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/publish-to-github-registry.yml/badge.svg?branch=master)](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/publish-to-github-registry.yml)
+[![Build native and man page on master branch with Gradle](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/native-on-master-with-gradle.yml/badge.svg?branch=master)](https://github.com/rossonet/TemplateConsoleApplication/actions/workflows/native-on-master-with-gradle.yml)
 
 # Template Console Application by Rossonet
 
