@@ -22,13 +22,6 @@ jobs:
         components: 'native-image'
         github-token: ${{ secrets.GITHUB_TOKEN }}
         native-image-job-reports: 'true'
-    - name: Print info
-      run: |
-        echo "GRAALVM_HOME: $GRAALVM_HOME"
-        echo "JAVA_HOME: $JAVA_HOME"
-        java --version
-        gu --version
-        native-image --version
     - name: Clone sub repos
       env:
         GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
