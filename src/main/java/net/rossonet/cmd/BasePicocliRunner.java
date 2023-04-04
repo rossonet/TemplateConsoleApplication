@@ -5,11 +5,6 @@ import java.io.PrintWriter;
 import net.rossonet.cmd.commands.SystemInfoCommand;
 import picocli.CommandLine;
 
-/**
- * @see https://picocli.info/
- * @Author Andrea Ambrosini - Rossonet s.c.a.r.l.
- *
- */
 public class BasePicocliRunner {
 
 	public static BasePicocliRunner getNewInstance() {
