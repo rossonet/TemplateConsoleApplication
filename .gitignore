@@ -24,6 +24,7 @@ webpack.generated.js
 frontend
 temp-test-*
 status.json
+gradle.properties
 
 ### OUTPUT ###
 spring-shell.log
