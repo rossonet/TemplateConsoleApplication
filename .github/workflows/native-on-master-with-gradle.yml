@@ -8,23 +8,20 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v3
     - uses: graalvm/setup-graalvm@v1
       with:
-        version: 'latest'
+        version: '22.3.0'
         java-version: '17'
         components: 'native-image'
         github-token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Print info
-      run: |
-        echo "GRAALVM_HOME: $GRAALVM_HOME"
-        echo "JAVA_HOME: $JAVA_HOME"
-        java --version
-        gu --version
-        native-image --version
+        native-image-job-reports: 'true'
     - name: Clone sub repos
       env:
         GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
@@ -34,3 +31,8 @@ jobs:
         git submodule update
     - name: Build native with Gradle
       run: ./gradlew generateManpageAsciiDoc nativeCompile -Dorg.gradle.daemon=false
+    - name: Upload binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: console-app-${{ matrix.os }}
+        path: build/native/nativeCompile/TemplateConsoleApplication
