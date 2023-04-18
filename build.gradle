@@ -52,7 +52,7 @@ apply plugin: 'application'
 dependencies {
     implementation 'net.rossonet.commons:rossonet-helper:0.3.2'
     implementation 'net.rossonet.commons.command:command-line-to-action:0.2.1'
-    annotationProcessor 'info.picocli:picocli-codegen:4.7.1'
+    annotationProcessor 'info.picocli:picocli-codegen:4.7.3'
     implementation group: 'org.json', name: 'json', version: '20230227'
     implementation 'org.yaml:snakeyaml:2.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
